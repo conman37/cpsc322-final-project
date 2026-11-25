@@ -14,8 +14,7 @@ Description: Cleans the raw FPL Core Insights data (olbauday/FPL-Core-Insights,
         match_features.csv     one row per match, pre-match form only (home-win classifier)
 
     Every function is written to be run in order (see run_all() at the bottom,
-    or data_cleaning.ipynb, which walks through each step). Comments explain
-    WHY each cleaning decision was made, not just what the code does.
+    or data_cleaning.ipynb, which walks through each step). 
 
     We use our own MyPyTable class and plain Python (no pandas) so the cleaned
     data comes out in the same format our classifiers from class expect.
@@ -54,13 +53,12 @@ MATCH_STATS = ["possession", "expected_goals_xg", "non_penalty_xg", "xg_on_targe
 #   * "_percent" columns: a 0% from 0 attempts looks the same as 0% from 10 attempts,
 #     so they are misleading. Counts (e.g. accurate_crosses) are kept instead.
 #   * start_min / finish_min: the data source's README warns these are unreliable.
-#     minutes_played is the source of truth for minutes.
+#     minutes_played gives actual minutes.
 PLAYER_ID_COLUMNS = ["player_id", "match_id", "minutes_played", "file_gameweek"]
 PLAYER_DROPPED_COLUMNS = ["start_min", "finish_min"]
 
 # Stats that only make sense for goalkeepers (or describe the team, not the
-# player). They stay in player_matches.csv but are left out of the outfield
-# position table.
+# player). They stay in player_matches.csv but are left out of the position table.
 GOALKEEPER_OR_TEAM_STATS = ["saves", "goals_conceded", "xgot_faced", "goals_prevented",
                             "sweeper_actions", "gk_accurate_passes", "gk_accurate_long_balls",
                             "high_claim", "saves_inside_box", "team_goals_conceded"]
